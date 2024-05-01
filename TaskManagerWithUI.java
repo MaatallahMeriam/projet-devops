@@ -10,6 +10,23 @@ public class TaskManagerWithUI {
     private JButton addButton, refreshButton;
     private JTextArea taskListArea;
 
+    // Ajoutez des getters pour les éléments de l'interface utilisateur nécessaires aux tests
+    public JTextField getTaskNameField() {
+        return taskNameField;
+    }
+
+    public JTextField getDescriptionField() {
+        return descriptionField;
+    }
+
+    public JTextField getDueDateField() {
+        return dueDateField;
+    }
+
+    public JTextArea getTaskListArea() {
+        return taskListArea;
+    }
+
     public TaskManagerWithUI() {
         frame = new JFrame("Task Manager");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -51,7 +68,6 @@ public class TaskManagerWithUI {
         frame.add(new JScrollPane(taskListArea), BorderLayout.CENTER);
         frame.setLocationRelativeTo(null);
 
-        
         frame.setVisible(true);
     }
 
@@ -62,8 +78,7 @@ public class TaskManagerWithUI {
             }
         });
     }
-
-    private void addTask() {
+    public void addTask() {
         String taskName = taskNameField.getText();
         String description = descriptionField.getText();
         String dueDateString = dueDateField.getText();
@@ -87,7 +102,7 @@ public class TaskManagerWithUI {
         }
     }
 
-    private void refreshTaskList() {
+    public void refreshTaskList() {
         try {
             Connection connection = DatabaseManager.getConnection();
             ResultSet resultSet = connection.createStatement().executeQuery("SELECT * FROM tasks");
