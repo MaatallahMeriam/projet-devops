@@ -9,7 +9,6 @@ jobs:
   build:
     name: Build
     runs-on: windows
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
@@ -25,7 +24,6 @@ jobs:
   test:
     name: Test
     runs-on: windows
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
@@ -35,7 +33,6 @@ jobs:
         with:
           java-version: 1.8.0_202
 
-
       - name: Run automated tests
         run: java -cp C:\Users\PCS\Desktop\Cr_Devops_Maatallah_Meriam\out;C:\Users\PCS\Desktop\Cr_Devops_Maatallah_Meriam\lib org.junit.runner.JUnitCore TaskManagerTest
 
@@ -43,7 +40,6 @@ jobs:
     name: Deployment
     runs-on: windows
     needs: [test]
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
@@ -54,6 +50,6 @@ jobs:
           java-version: 1.8.0_202
 
       - name: Deploy to production
-          run:|
-              docker build -t my-app .
-              docker run -d -p 8080:8080 my-app
+        run: |
+          docker build -t my-app .
+          docker run -d -p 8080:8080 my-app
